@@ -5,4 +5,4 @@ DEBUG = True
 SQLALCHEMY_DATABASE_URI = 'sqlite:///'+os.path.join(basedir, 'storage.db')
 SQLALCHEMY_TRACK_MODIFICATIONS = True
 
-SECRET_KEY = 'um-nome-seguro'
+SECRET_KEY = 'um-nome-seguro' # quando usamos campos de senhas nos formulários, precisamos definir um secret key

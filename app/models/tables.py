@@ -1,23 +1,24 @@
-from app import db
+from app import db # importa variável db contida no __init__ da raíz
 
 
-class User(db.Model):
-    __tablename__ = "users"
+class User(db.Model): #Cria classe usuário como modelo do DB
+    __tablename__ = "users" #Nome da tabela
 
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String, unique=True)
+    # Colunas da tabela, podemos passar tamanho máximo: db.String(50)
+    id = db.Column(db.Integer, primary_key=True)     # Chave primária de tipo inteiro
+    username = db.Column(db.String, unique=True)     # String não poderá ter outra igual
     password = db.Column(db.String)
     name = db.Column(db.String)
     email = db.Column(db.String, unique=True)
 
-    def __init__(self, username, password, name, email):
+    def __init__(self, username, password, name, email): # Metodo construtor
         self.username = username
         self.password = password
         self.name = name
         self.email = email
 
 
-    def __repr__(self):
+    def __repr__(self):                         # forma de representação ao ser printada: print()
         return "<Usuário: %r>" % self.username
 
 
@@ -26,7 +27,8 @@ class Post(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.Text)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id')) # define coluna como chave estrangeira e referencia
+                                                                # ela por: NomeTabela.Chave
 
     user = db.relationship('User', foreign_keys=user_id)
 
